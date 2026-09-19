@@ -1,8 +1,8 @@
-# Nebula Agent Railway Template
+﻿# Nebula Railway Template
 
 [![Deploy on Railway](https://railway.com/button.svg)](https://railway.com/new)
 
-Deploy [Nebula Agent](https://github.com/NousResearch/hermes-agent) to Railway as a worker service with persistent state.
+Deploy [Nebula](https://github.com/NousResearch/hermes-agent) to Railway as a worker service with persistent state.
 
 This template is worker-only: setup and configuration are done through Railway Variables, then the container bootstraps Nebula automatically on first run.
 
@@ -294,7 +294,7 @@ The canonical registration shape used by both the plugin and `/.well-known/agent
 ```json
 {
   "type": "https://eips.ethereum.org/EIPS/eip-8004#registration-v1",
-  "name": "Nebula Agent",
+  "name": "Nebula",
   "description": "A natural language description of the agent",
   "image": "https://example.com/agent.png",
   "services": [

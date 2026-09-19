@@ -1,4 +1,4 @@
-"""GoDaddy ANS helper utilities for this Nebula template."""
+﻿"""GoDaddy ANS helper utilities for this Nebula template."""
 from __future__ import annotations
 
 import argparse
@@ -551,7 +551,7 @@ def build_registration_bundle(
     display_name = (
         current_env.get("GODADDY_ANS_DISPLAY_NAME", "").strip()
         or current_env.get("AGENT_NAME", "").strip()
-        or "Nebula Agent"
+        or "Nebula"
     )[:MAX_AGENT_DISPLAY_NAME_LENGTH]
     version = _registration_version(current_env)
     description = (

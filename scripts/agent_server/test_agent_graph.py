@@ -1,4 +1,4 @@
-import json
+﻿import json
 import os
 import tempfile
 import unittest
@@ -13,10 +13,10 @@ from scripts.agent_server import main
 class AgentGraphTests(unittest.TestCase):
     def _sample_agent_card(self) -> dict:
         return {
-            "name": "Nebula Agent",
+            "name": "Nebula",
             "description": "A test agent",
             "provider": {
-                "name": "Nebula Agent",
+                "name": "Nebula",
                 "url": main.BASE_URL,
                 "did": "did:web:test.example",
             },
@@ -45,7 +45,7 @@ class AgentGraphTests(unittest.TestCase):
     def _sample_graph_payload(self) -> dict:
         return {
             "generated_at": "2026-04-22T00:00:00Z",
-            "agent": {"id": "agent", "label": "Nebula Agent", "description": "A test agent"},
+            "agent": {"id": "agent", "label": "Nebula", "description": "A test agent"},
             "stats": {
                 "node_count": 3,
                 "edge_count": 2,
@@ -57,7 +57,7 @@ class AgentGraphTests(unittest.TestCase):
             "nodes": [
                 {
                     "id": "agent",
-                    "label": "Nebula Agent",
+                    "label": "Nebula",
                     "kind": "agent",
                     "category": "core",
                     "external": False,

@@ -1,4 +1,4 @@
-# Agent Server
+﻿# Agent Server
 
 The agent server in this directory is the FastAPI layer that exposes the public discovery surface, JWT auth, A2A transport, homepage, and a few internal helper endpoints for the Nebula Railway template.
 
@@ -191,7 +191,7 @@ AGENT_SERVER_MOCK_DATA=true \
 HERMES_HOME="$PWD/.nebula-local" \
 PUBLIC_URL=http://localhost:3000 \
 PORT=3000 \
-AGENT_NAME="Nebula Agent" \
+AGENT_NAME="Nebula" \
 MOCK_AGENT_SKILLS_INDEX_FILE="$PWD/scripts/agent_server/mock-agent-skills.index.json" \
 python3 -m uvicorn scripts.agent_server.main:app --reload --port 3000
 ```
@@ -308,7 +308,7 @@ The FastAPI server disables default uvicorn access logs so the structured lines 
 
 | Variable | Description |
 |---|---|
-| `AGENT_NAME` | Display name across discovery endpoints. Defaults to `Nebula Agent` |
+| `AGENT_NAME` | Display name across discovery endpoints. Defaults to `Nebula` |
 | `AGENT_DESCRIPTION` | One-line description published in `agent-card.json` |
 | `AGENT_IMAGE` | Required for ERC-8004 self-registration |
 | `AGENT_SUPPORTED_TRUST` | Required for ERC-8004 self-registration when not passed directly |

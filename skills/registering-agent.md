@@ -1,4 +1,4 @@
----
+﻿---
 name: registering-agent
 description: Register this agent or inspect ERC-8004 registrations on Radius using the deterministic registry plugin tools
 published: true
@@ -39,7 +39,7 @@ The canonical registration shape in this repo is:
 ```json
 {
   "type": "https://eips.ethereum.org/EIPS/eip-8004#registration-v1",
-  "name": "Nebula Agent",
+  "name": "Nebula",
   "description": "A natural language description of the agent",
   "image": "https://example.com/agent.png",
   "services": [

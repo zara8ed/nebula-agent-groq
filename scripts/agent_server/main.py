@@ -1,4 +1,4 @@
-#!/usr/bin/env python3
+﻿#!/usr/bin/env python3
 """
 Agent Server — A2A HTTP gateway and agent discovery endpoints.
 """
@@ -1736,7 +1736,7 @@ async def agent_card():
 
 
 def _build_agent_card_payload() -> dict:
-    agent_name = os.environ.get("AGENT_NAME", "Nebula Agent")
+    agent_name = os.environ.get("AGENT_NAME", "Nebula")
     did = get_did()
     webhook_enabled = bool(os.environ.get("WEBHOOK_SECRET"))
     skills_index = json.loads(_get_index())
@@ -2849,8 +2849,8 @@ async def index(request: Request):
         else ""
     )
     radius_site = "https://radiustech.xyz"
-    template_repo = "https://github.com/hiopnmuiilvirom/nebula-agent"
-    page_title = f"{agent_name} | Radius Nebula Agent"
+    template_repo = "https://github.com/hiopnmuiilvirom/nebula"
+    page_title = f"{agent_name} | Radius Nebula"
     og_title = f"{agent_name} | Public A2A Discovery"
     og_description = _truncate_text(
         f"{agent_description} Human-readable capabilities plus canonical /.well-known discovery documents for A2A clients, registries, and operator tooling.",
