@@ -93,6 +93,9 @@ BASE_URL = get_base_url()
 A2A_PUBLIC_URL = os.environ.get("A2A_PUBLIC_URL", BASE_URL)
 A2A_MODE = os.environ.get("A2A_MODE", "auto").lower()
 HERMES_URL = os.environ.get("HERMES_URL", "http://127.0.0.1:8642")
+DIRECT_API_BASE_URL = os.environ.get("OPENAI_BASE_URL", "")
+DIRECT_API_KEY = os.environ.get("OPENAI_API_KEY", "")
+LLM_MODEL = os.environ.get("LLM_MODEL", "llama-3.3-70b-versatile")
 A2A_BRIDGE_MODEL = os.environ.get("A2A_BRIDGE_MODEL", "hermes-agent")
 HERMES_TIMEOUT = float(os.environ.get("HERMES_TIMEOUT", "120"))
 A2A_SESSION_ROOT = Path(HERMES_HOME) / "a2a-sessions"
@@ -1209,14 +1212,22 @@ async def _run_radius_sync_task(
 async def lifespan(app: FastAPI):
     global _nebula_client, _a2a_bridge, _a2a_session_worker
     await setup_auth(BASE_URL)
-    nebula_api_key = _nebula_api_key()
-    if nebula_api_key:
+    if DIRECT_API_BASE_URL and DIRECT_API_KEY:
         _nebula_client = NebulaClient(
-            base_url=HERMES_URL,
-            api_key=nebula_api_key,
-            model=A2A_BRIDGE_MODEL,
+            base_url=DIRECT_API_BASE_URL,
+            api_key=DIRECT_API_KEY,
+            model=LLM_MODEL,
             timeout=HERMES_TIMEOUT,
         )
+    else:
+        nebula_api_key = _nebula_api_key()
+        if nebula_api_key:
+            _nebula_client = NebulaClient(
+                base_url=HERMES_URL,
+                api_key=nebula_api_key,
+                model=A2A_BRIDGE_MODEL,
+                timeout=HERMES_TIMEOUT,
+            )
         _a2a_bridge = A2ABridge(_nebula_client, _parse_allowed_roots(), A2A_PUBLIC_URL)
     _a2a_session_worker = asyncio.create_task(
         _session_worker_loop(), name="a2a-session-worker"
