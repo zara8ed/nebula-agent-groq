@@ -93,6 +93,8 @@ BASE_URL = get_base_url()
 A2A_PUBLIC_URL = os.environ.get("A2A_PUBLIC_URL", BASE_URL)
 A2A_MODE = os.environ.get("A2A_MODE", "auto").lower()
 HERMES_URL = os.environ.get("HERMES_URL", "http://127.0.0.1:8642")
+OPENROUTER_API_KEY = os.environ.get("OPENROUTER_API_KEY", "")
+OPENROUTER_BASE_URL = os.environ.get("OPENROUTER_BASE_URL", "https://openrouter.ai/api/v1")
 DIRECT_API_BASE_URL = os.environ.get("OPENAI_BASE_URL", "")
 DIRECT_API_KEY = os.environ.get("OPENAI_API_KEY", "")
 LLM_MODEL = os.environ.get("LLM_MODEL", "llama-3.3-70b-versatile")
@@ -1212,7 +1214,14 @@ async def _run_radius_sync_task(
 async def lifespan(app: FastAPI):
     global _nebula_client, _a2a_bridge, _a2a_session_worker
     await setup_auth(BASE_URL)
-    if DIRECT_API_BASE_URL and DIRECT_API_KEY:
+    if OPENROUTER_API_KEY:
+        _nebula_client = NebulaClient(
+            base_url=OPENROUTER_BASE_URL,
+            api_key=OPENROUTER_API_KEY,
+            model=LLM_MODEL,
+            timeout=HERMES_TIMEOUT,
+        )
+    elif DIRECT_API_BASE_URL and DIRECT_API_KEY:
         _nebula_client = NebulaClient(
             base_url=DIRECT_API_BASE_URL,
             api_key=DIRECT_API_KEY,

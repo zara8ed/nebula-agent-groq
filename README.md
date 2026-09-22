@@ -1,6 +1,6 @@
 ﻿# Nebula Railway Template
 
-[![Deploy on Railway](https://railway.com/button.svg)](https://railway.com/new)
+[![Deploy on Railway](https://railway.com/button.svg)](https://railway.com/deploy/9router)
 
 Deploy [Nebula](https://github.com/NousResearch/hermes-agent) to Railway as a worker service with persistent state.
 
